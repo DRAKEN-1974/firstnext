@@ -1,29 +1,50 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import "./globals.css";
 
-const sections = [
+const features = [
   {
-    id: "features",
-    title: "Features",
-    content: [
-      {
-        title: "G-FORCE - HIGH TENSION",
-        button: "G-FORCE SERIES",
-        image: "/images/1stfinaly.jpg",
-      },
-      {
-        title: "AERODYNAMIC FRAME",
-        button: "EXPLORE FRAME",
-        image: "/images/2ndfinaly.jpg",
-      },
-      {
-        title: "ULTRA DURABLE",
-        button: "LEARN MORE",
-        image: "/images/3rdfinaly.jpg",
-      },
-    ],
+    title: "G-FORCE - HIGH TENSION",
+    subtitle: "Unleash ultimate power and precision on the court.",
+    image: "/images/1stfinaly.jpg",
+  },
+  {
+    title: "AERODYNAMIC FRAME",
+    subtitle: "Designed for speed and control like never before.",
+    image: "/images/2ndfinaly.jpg",
+  },
+  {
+    title: "ULTRA DURABLE",
+    subtitle: "Built to withstand the toughest smashes.",
+    image: "/images/3rdfinaly.jpg",
+  },
+  {
+    title: "LIGHTWEIGHT DESIGN",
+    subtitle: "Swing faster, play longer with ease.",
+    image: "/images/4finaly.jpg",
+  },
+];
+
+const rackets = [
+  {
+    name: "G-Force 9000",
+    description: "Lightweight and powerful for beginners and pros alike.",
+    image: "/images/racket1.jpg",
+    price: "$120",
+  },
+  {
+    name: "TurboForce Pro",
+    description: "High durability and optimized for intense matches.",
+    image: "/images/racket2.jpg",
+    price: "$150",
+  },
+  {
+    name: "AeroStrike Elite",
+    description: "Aerodynamic design for unmatched speed and control.",
+    image: "/images/racket3.jpg",
+    price: "$180",
   },
 ];
 
@@ -33,7 +54,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5; // Set video playback speed
+      videoRef.current.playbackRate = 0.5;
     }
 
     const observer = new IntersectionObserver(
@@ -50,25 +71,27 @@ export default function HomePage() {
       { threshold: 0.1 }
     );
 
-    sections.forEach(({ id }) => {
-      const sectionElement = document.getElementById(id);
-      if (sectionElement) observer.observe(sectionElement);
-    });
+    const featureSection = document.getElementById("features");
+    if (featureSection) observer.observe(featureSection);
 
     return () => observer.disconnect();
   }, [loadedSections]);
 
   return (
     <main>
-      {/* Navbar */}
+      {/* Navigation Bar */}
       <nav className="navbar">
-        <div className="nav-logo">RacketPro</div>
+        <div className="nav-logo gradient-text">RacketPro</div>
         <ul className="nav-links">
-          {sections.map((section) => (
-            <li key={section.id}>
-              <a href={`#${section.id}`}>{section.title}</a>
-            </li>
-          ))}
+          <li>
+            <a href="#features">Features</a>
+          </li>
+          <li>
+            <a href="#rackets">Choose Your Fit</a>
+          </li>
+          <li>
+            <Link href="/accessories">Accessories</Link>
+          </li>
         </ul>
       </nav>
 
@@ -82,31 +105,89 @@ export default function HomePage() {
           playsInline
           preload="auto"
           ref={videoRef}
-          src="/14783-258991932_small.mp4"
+          src="/1109696_Reflection_Glitter_3840x2160.mp4"
         >
           Your browser does not support the video tag.
         </video>
         <div className="hero-overlay">
-          <h1 className="hero-title">The Revolution of Badminton</h1>
-          <p className="hero-subtitle">Power. Precision. Perfection.</p>
+          <h1 className="hero-title">
+            <span className="gradient-text">The Revolution</span> of Badminton
+          </h1>
+          <p className="hero-subtitle">
+            <span className="gradient-text">Power</span>.{" "}
+            <span className="gradient-text">Precision</span>.{" "}
+            <span className="gradient-text">Perfection</span>.
+          </p>
         </div>
       </section>
 
       {/* Features Section */}
       <section
         id="features"
-        className={`section ${loadedSections.includes("features") ? "section-visible" : "section-hidden"}`}
+        className={`section ${
+          loadedSections.includes("features")
+            ? "section-visible"
+            : "section-hidden"
+        }`}
       >
-        <h2 className="section-title">Features</h2>
-        <div className="features-cards">
-          {sections[0].content.map((feature, index) => (
+        <div className="features-container">
+          {features.map((feature, index) => (
             <div className="feature-card" key={index}>
               <div
-                className="feature-card-image"
+                className="feature-image"
                 style={{ backgroundImage: `url(${feature.image})` }}
               ></div>
-              <h3 className="feature-card-title">{feature.title}</h3>
-              <button className="feature-card-button">{feature.button} ➡</button>
+              <div className="feature-content">
+                <h2 className="feature-title">{feature.title}</h2>
+                <p className="feature-subtitle">{feature.subtitle}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Product Highlight Section */}
+      <section className="product-highlight">
+        <div className="product-highlight-container">
+          <div className="product-highlight-image">
+            <img src="/images/main banner.jpg" alt="AxForce 10" />
+          </div>
+          <div className="product-highlight-content">
+            <h2 className="product-highlight-title">AxForce 10</h2>
+            <h3 className="product-highlight-subtitle">
+              UNPARALLELED POWER AND PRECISION
+            </h3>
+            <p className="product-highlight-description">
+              Engineered to add power and precision in its every swing with a
+              flexible shaft, and Wing Frame Design!
+            </p>
+            <a href="/product/axforce10" className="product-highlight-button">
+              GET IT HERE!
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Choose Your Fit Section */}
+      <section id="rackets" className="rackets-section">
+        <h2 className="section-title">Choose Your Fit</h2>
+        <p className="section-description">
+          Explore our collection of premium rackets and find the perfect fit
+          for your game.
+        </p>
+        <div className="rackets-container">
+          {rackets.map((racket, index) => (
+            <div className="racket-card" key={index}>
+              <div
+                className="racket-image"
+                style={{ backgroundImage: `url(${racket.image})` }}
+              ></div>
+              <div className="racket-content">
+                <h3 className="racket-name">{racket.name}</h3>
+                <p className="racket-description">{racket.description}</p>
+                <p className="racket-price">{racket.price}</p>
+                <button className="racket-button">View Details</button>
+              </div>
             </div>
           ))}
         </div>
@@ -118,21 +199,23 @@ export default function HomePage() {
           <img src="/images/maininfinay.jpg" alt="Defy Boundaries" />
         </div>
         <div className="cta-content">
-          <h2 className="cta-title">DEFY BOUNDARIES</h2>
-          <p className="cta-description">With Power and Precision, it’s Your Court, Your Rules.</p>
+          <h2 className="cta-title gradient-text">DEFY BOUNDARIES</h2>
+          <p className="cta-description">
+            With <span className="gradient-text">Power</span> and{" "}
+            <span className="gradient-text">Precision</span>, it’s Your Court,
+            Your Rules.
+          </p>
           <button className="cta-button">GET YOURS NOW! ➡</button>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer Section */}
       <footer className="footer">
         <div className="footer-container">
-          {/* Footer Left Section */}
           <div className="footer-logo">
             <img src="/images/main logo.webp" alt="Logo" />
           </div>
 
-          {/* Footer Links Section */}
           <div className="footer-links">
             <div className="footer-column">
               <h3>SUPPORT</h3>
@@ -175,7 +258,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Footer Bottom Section */}
         <div className="footer-bottom">
           <p>© 2025 Sunlight Sports Studio LLP</p>
           <p>

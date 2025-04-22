@@ -7,16 +7,16 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #000; /* Black background */
-  color: #fff; /* White text for high contrast */
+  background-color: #fff;
+  color: #000;
   line-height: 1.6;
-  margin: 0;
   overflow-x: hidden;
 }
 
 main {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 /* Navbar */
@@ -25,18 +25,19 @@ main {
   top: 0;
   left: 0;
   width: 100%;
-  background: #000;
+  background: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
   z-index: 1000;
+  border-bottom: 1px solid #eee;
 }
 
 .nav-logo {
   font-size: 1.5rem;
   font-weight: bold;
-  background: linear-gradient(90deg, #ffffff, #888888);
+  background: linear-gradient(90deg, #ff512f, #dd2476);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -49,13 +50,13 @@ main {
 
 .nav-links a {
   text-decoration: none;
-  color: #fff;
+  color: #000;
   font-size: 1rem;
   transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: red;
+  color: #ff512f;
 }
 
 /* Hero Section */
@@ -86,7 +87,7 @@ main {
 
 .hero-title {
   font-size: 4rem;
-  background: linear-gradient(90deg, #ffffff, #888888);
+  background: linear-gradient(90deg, #ff512f, #dd2476);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
@@ -94,115 +95,256 @@ main {
 
 .hero-subtitle {
   font-size: 1.5rem;
-  color: #888;
+  color: #666;
 }
 
 /* Features Section */
-.features-cards {
+.features-section {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+}
+
+.features-container {
   display: flex;
-  justify-content: center; /* Center-align the cards */
-  gap: 20px; /* Add spacing between cards */
-  margin-top: 50px;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px;
+  scrollbar-width: none; /* Hides scrollbar for Firefox */
+}
+
+.features-container::-webkit-scrollbar {
+  display: none; /* Hides scrollbar for Chrome/Safari */
 }
 
 .feature-card {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  padding: 20px;
-  width: calc(100% - 20px);
-  max-width: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 0 0 auto;
+  width: 320px;
+  height: 580px;
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px); /* Slight lift effect on hover */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-.feature-card-image {
-  background-size: contain; /* Ensures the entire image fits inside */
-  background-repeat: no-repeat;
+.feature-image {
+  background-size: cover;
   background-position: center;
   width: 100%;
-  height: 300px; /* Adjust height to fit the aspect ratio */
-  border-radius: 12px;
+  height: 75%;
+}
+
+.feature-content {
+  padding: 20px;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(90deg, #ff512f, #dd2476);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feature-subtitle {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Product Highlight Section */
+.product-highlight {
+  background-color: #fafafa;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.product-highlight-container {
+  display: flex;
+  max-width: 1200px;
+  gap: 20px;
+  align-items: center;
+}
+
+.product-highlight-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-highlight-content {
+  flex: 1;
+  text-align: center;
+}
+
+.product-highlight-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-highlight-subtitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #555;
   margin-bottom: 20px;
 }
 
-.feature-card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.feature-card-button {
-  background: #f5f5f5;
-  border: 2px solid #ccc;
-  padding: 10px 20px;
-  border-radius: 50px;
+.product-highlight-description {
   font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
+  color: #666;
+  margin-bottom: 20px;
 }
 
-.feature-card-button:hover {
-  background: #000;
+.product-highlight-button {
+  display: inline-block;
+  background: #0070f3;
   color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.product-highlight-button:hover {
+  background: #005bb5;
+}
+
+/* Choose Your Fit Section */
+.rackets-section {
+  padding: 50px 20px;
+  background-color: #fff;
+  text-align: center;
 }
 
 .section-title {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #ff512f, #dd2476);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.section-description {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.rackets-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.racket-card {
+  width: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #f9f9f9;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.racket-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.racket-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.racket-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.racket-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.racket-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.racket-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ff512f;
+  margin-bottom: 15px;
+}
+
+.racket-button {
+  background: #ff512f;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.racket-button:hover {
+  background: #dd2476;
+}
+
 /* CTA Section */
 .cta-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 100px; /* Gap between CTA and footer */
-  background-color: #f5f5f5; /* Light gray background */
+  margin-top: 100px;
+  background-color: #f9f9f9;
   padding: 50px 20px;
   gap: 20px;
-}
-
-.cta-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .cta-image img {
   width: 100%;
   max-width: 500px;
-  height: auto;
   border-radius: 15px;
-  object-fit: cover; /* Ensures the image maintains its aspect ratio */
 }
 
 .cta-content {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   text-align: left;
   padding: 20px;
-  color: #000; /* Text color changed to black for better visibility */
 }
 
 .cta-title {
   font-size: 2.5rem;
   font-weight: bold;
+  background: linear-gradient(90deg, #ff512f, #dd2476);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
 }
 
@@ -228,9 +370,10 @@ main {
 
 /* Footer */
 .footer {
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   padding: 40px 20px;
+  border-top: 1px solid #eee;
 }
 
 .footer-container {
@@ -258,6 +401,9 @@ main {
 .footer-column h3 {
   font-size: 1.2rem;
   margin-bottom: 20px;
+  background: linear-gradient(90deg, #ff512f, #dd2476);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-column ul {
@@ -273,7 +419,7 @@ main {
 }
 
 .footer-column ul li:hover {
-  color: red;
+  color: #ff512f;
 }
 
 .footer-icons i {
@@ -284,7 +430,7 @@ main {
 }
 
 .footer-icons i:hover {
-  color: red;
+  color: #ff512f;
 }
 
 .footer-bottom {
